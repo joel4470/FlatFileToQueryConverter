@@ -19,16 +19,18 @@ Converts a Flatfile to a query
 		    form[fieldName]  = qry[fieldName][1];
 		    if ct eq 1
 		    {
-				columns = replace(i,'|',',','all');
+		    	// ensure that the Delimiter is a comma
+				columns = replace(i,Delimiter,',','all');
 				ConvertedQuery = QueryNew("#columns#"); 
 				colArray = arrayNew(1);
 				colArray = listToArray(columns);
 			}
 			else if ct gt 1
 			{
+				// ensure that the Delimiter is a comma
 				dataCol = replace(i,'#chr(34)#','','all');
 				dataArray = arrayNew(1);
-				dataArray = listToArray(dataCol,'|');
+				dataArray = listToArray(dataCol,Delimiter);
 				queryAddRow(ConvertedQuery, 1);
 			}
 			for (j=1;j lte arrayLen(colArray);j++;) 
